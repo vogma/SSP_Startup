@@ -14,7 +14,7 @@ public class PersistenceManager
 		{
 			for (Stadion stadion : stadions)
 			{
-				PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO stadion (s_name,s_gps,s_adress,s_bildURL,s_kapazitaet) VALUES (?,?,?,?,?);");
+				PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO liga.stadion (s_name,s_gps,s_adress,s_bildURL,s_kapazitaet) VALUES (?,?,?,?,?);");
 				preparedStatement.setString(1, stadion.getStadionName());
 				preparedStatement.setString(2, stadion.getStadionGPS());
 				preparedStatement.setString(3, stadion.getStadionAddress());

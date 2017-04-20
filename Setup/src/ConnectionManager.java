@@ -15,7 +15,7 @@ public class ConnectionManager
 	public static Connection getConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		String connectionCommand = "jdbc:mysql://localhost/liga?user=root&password=root";
+		String connectionCommand = "jdbc:mysql://localhost/?user=root&password=root";
 		connection = DriverManager.getConnection(connectionCommand);
 		return connection;
 	}
