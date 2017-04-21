@@ -9,28 +9,44 @@ package entitys;
  *
  * @author Marco
  */
-public class Player {
-       private String name;
+public class Player
+{
+	private String name;
+	private int teamID;
 
-    public String getName() {
-        return name;
-    }
+	public int getTeamID()
+	{
+		return teamID;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setTeamID(int teamID)
+	{
+		this.teamID = teamID;
+	}
 
-    public Player() {
-    }
+	public String getName()
+	{
+		return name;
+	}
 
-    public Player(String name) {
-        this.name = name;
-    }
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 
-    @Override
-    public String toString() {
-        return "Name: " +getName();
-    }
-       
-       
+	public Player()
+	{
+	}
+
+	public Player(String name)
+	{
+		this.name = name;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Name: " + getName()+" ID: "+getTeamID();
+	}
+
 }
