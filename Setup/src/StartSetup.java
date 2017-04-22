@@ -1,29 +1,16 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import entitys.Match;
-import entitys.Player;
 import entitys.Stadion;
 import entitys.Team;
 import manager.ConnectionManager;
+import manager.PersistenceManager;
 
 public class StartSetup
 {
@@ -34,6 +21,7 @@ public class StartSetup
 
 	public static void main(String[] args)
 	{
+
 		try
 		{
 			matchStream = StartSetup.class.getResourceAsStream("/matches.xml");
@@ -41,19 +29,39 @@ public class StartSetup
 			stadionStream = StartSetup.class.getResourceAsStream("/stadions.xml");
 
 			XMLParser xmlParser = new XMLParser();
-			//List<Match> matches = xmlParser.parseMatches(matchStream);
-			//List<Team> teams = xmlParser.parseTeams(teamStream);
-			List<Player> player = xmlParser.parsePlayer(teamStream);
-			//List<Stadion> stadions = xmlParser.parseStadions(stadionStream);
+			// List<Match> matches = xmlParser.parseMatches(matchStream);
+			List<Team> teams = xmlParser.parseTeams(teamStream);
+			// List<Player> player = xmlParser.parsePlayer(teamStream);
+			List<Stadion> stadion = xmlParser.parseStadions(stadionStream);
+
+			teams = linkTeamsWithStadion(teams, stadion);
 			
-			//runDatabaseSetupScript();
-			
-			//PersistenceManager.persistStadions(stadions);
+			runDatabaseSetupScript();
+
+			PersistenceManager.persistStadions(stadion);
+			PersistenceManager.persistTeams(teams);
+			// PersistenceManager.persistPlayer(player);
+
 		} catch (Exception ex)
 		{
 			ex.printStackTrace();
 		}
 
+	}
+
+	private static List<Team> linkTeamsWithStadion(List<Team> teams, List<Stadion> stadion)
+	{
+		for (Team team : teams)
+		{
+			for (Stadion stadionItem : stadion)
+			{
+				if (team.getTeamName().equals(stadionItem.getTeamName()))
+				{
+					team.setStadionID(stadionItem.getStadionID());
+				}
+			}
+		}
+		return teams;
 	}
 
 	private static void runDatabaseSetupScript() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, FileNotFoundException

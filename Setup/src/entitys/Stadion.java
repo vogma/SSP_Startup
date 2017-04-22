@@ -4,79 +4,102 @@ package entitys;
  *
  * @author Marco Vogel
  */
-public class Stadion {
+public class Stadion
+{
 
-    private int teamID;
-    private String teamName;
-    private String stadionName;
-    private String stadionGPS;
-    private String stadionAddress;
-    private String stadionImageURL;
-    private int stadionCapacity;
+	private int stadionID;
+	private int teamID;
+	private String teamName;
+	private String stadionName;
+	private String stadionGPS;
+	private String stadionAddress;
+	private String stadionImageURL;
+	private int stadionCapacity;
+	
+	public int getStadionID()
+	{
+		return stadionID;
+	}
 
-    public int getTeamID() {
-        return teamID;
-    }
+	public void setStadionID(int stadionID)
+	{
+		this.stadionID = stadionID;
+	}
 
-    public void setTeamID(int teamID) {
-        this.teamID = teamID;
-    }
+	public int getTeamID()
+	{
+		return teamID;
+	}
 
-    public String getTeamName() {
-        return teamName;
-    }
+	public void setTeamID(int teamID)
+	{
+		this.teamID = teamID;
+	}
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
+	public String getTeamName()
+	{
+		return teamName;
+	}
 
-    public String getStadionName() {
-        return stadionName;
-    }
+	public void setTeamName(String teamName)
+	{
+		this.teamName = teamName;
+	}
 
-    public void setStadionName(String stadionName) {
-        this.stadionName = stadionName;
-    }
+	public String getStadionName()
+	{
+		return stadionName;
+	}
 
-    public String getStadionGPS() {
-        return stadionGPS;
-    }
+	public void setStadionName(String stadionName)
+	{
+		this.stadionName = stadionName;
+	}
 
-    public void setStadionGPS(String stadionGPS) {
-        this.stadionGPS = stadionGPS;
-    }
+	public String getStadionGPS()
+	{
+		return stadionGPS;
+	}
 
-    public String getStadionAddress() {
-        return stadionAddress;
-    }
+	public void setStadionGPS(String stadionGPS)
+	{
+		this.stadionGPS = stadionGPS;
+	}
 
-    public void setStadionAddress(String stadionAddress) {
-        this.stadionAddress = stadionAddress;
-    }
+	public String getStadionAddress()
+	{
+		return stadionAddress;
+	}
 
-    public String getStadionImageURL() {
-        return stadionImageURL;
-    }
+	public void setStadionAddress(String stadionAddress)
+	{
+		this.stadionAddress = stadionAddress;
+	}
 
-    public void setStadionImageURL(String stadionImageURL) {
-        this.stadionImageURL = stadionImageURL;
-    }
+	public String getStadionImageURL()
+	{
+		return stadionImageURL;
+	}
 
-    public int getStadionCapacity() {
-        return stadionCapacity;
-    }
+	public void setStadionImageURL(String stadionImageURL)
+	{
+		this.stadionImageURL = stadionImageURL;
+	}
 
-    public void setStadionCapacity(int stadionCapacity) {
-        this.stadionCapacity = stadionCapacity;
-    }
+	public int getStadionCapacity()
+	{
+		return stadionCapacity;
+	}
 
-    @Override
-    public String toString() {
-        return getTeamName()+" : "+getStadionName()+" "+getStadionAddress() +" "+getStadionImageURL() +" "+getStadionGPS()+" "+getTeamID()+" "+getStadionCapacity();
-    }
-    
-    
-    
-    
+	public void setStadionCapacity(int stadionCapacity)
+	{
+		this.stadionCapacity = stadionCapacity;
+	}
+
+	@Override
+	public String toString()
+	{
+		return getTeamName() + " : " + getStadionName() + " " + getStadionAddress() + " " + getStadionImageURL() + " " + getStadionGPS() + " " + getTeamID() + " " + getStadionCapacity();
+	}
 
 }

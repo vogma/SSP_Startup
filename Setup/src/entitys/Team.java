@@ -9,76 +9,60 @@ import java.util.List;
 
 /**
  *
- * @author Marco
+ * @author Marco Vogel
  */
-public class Team {
+public class Team
+{
 
-    private String teamName, stadion, teamIconUrl, stadium;
-    private int teamID;
-    private List<Player> player;
+	private String teamName;
+	private String teamIconUrl;
+	private int teamID;
+	private int stadionID;
 
-    public String getStadium() {
-        return stadium;
-    }
+	public int getStadionID()
+	{
+		return stadionID;
+	}
 
-    public void setStadium(String stadium) {
-        this.stadium = stadium;
-    }
+	public void setStadionID(int stadionID)
+	{
+		this.stadionID = stadionID;
+	}
 
-    public Team() {
-    }
+	public String getTeamName()
+	{
+		return teamName;
+	}
 
-    public String getTeamName() {
-        return teamName;
-    }
+	public void setTeamName(String teamName)
+	{
+		this.teamName = teamName;
+	}
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
+	public String getTeamIconUrl()
+	{
+		return teamIconUrl;
+	}
 
-    public String getStadion() {
-        return stadion;
-    }
+	public void setTeamIconUrl(String teamIconUrl)
+	{
+		this.teamIconUrl = teamIconUrl;
+	}
 
-    public void setStadion(String stadion) {
-        this.stadion = stadion;
-    }
+	public int getTeamID()
+	{
+		return teamID;
+	}
 
-    public String getTeamIconUrl() {
-        return teamIconUrl;
-    }
+	public void setTeamID(int teamID)
+	{
+		this.teamID = teamID;
+	}
 
-    public void setTeamIconUrl(String teamIconUrl) {
-        this.teamIconUrl = teamIconUrl;
-    }
-
-    public int getTeamID() {
-        return teamID;
-    }
-
-    public void setTeamID(int teamID) {
-        this.teamID = teamID;
-    }
-
-    public List<Player> getPlayer(int index) {
-        return player;
-    }
-
-    public List<Player> getAllPlayer() {
-        return this.player;
-    }
-
-    public void setPlayer(List<Player> player) {
-        this.player = player;
-    }
-
-    public void addPlayer(Player player) {
-        this.player.add(player);
-    }
-
-    @Override
-    public String toString() {
-        return "Teamname: " + getTeamName() + " TeamID: " + getTeamID() + " IconUrl: "+getTeamIconUrl() +" Player: " + getAllPlayer();
-    }
+	@Override
+	public String toString()
+	{
+		return "Teamname: " + getTeamName() + " TeamID: " + getTeamID() + " IconUrl: " + getTeamIconUrl() + " StadionID: "+ getStadionID();
+	}
 
 }

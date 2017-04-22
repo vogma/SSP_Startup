@@ -1,3 +1,4 @@
+-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -90,18 +91,18 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `liga`.`player` ;
 
 CREATE TABLE IF NOT EXISTS `liga`.`player` (
-  `player_id` INT(11) NOT NULL,
+  `player_id` INT(11) NOT NULL AUTO_INCREMENT,
   `p_name` VARCHAR(200) NULL,
   `p_position` VARCHAR(200) NULL,
   `p_geburtsdatum` DATE NULL,
   `p_nation` VARCHAR(200) NULL,
   `p_bildURL` VARCHAR(255) NULL,
   `p_vereinID` INT(11) NULL,
-  `verein_verein_id` INT(11) NOT NULL,
+  `p_verein_id` INT(11) NOT NULL,
   PRIMARY KEY (`player_id`),
-  INDEX `fk_player_verein1_idx` (`verein_verein_id` ASC),
+  INDEX `fk_player_verein1_idx` (`p_verein_id` ASC),
   CONSTRAINT `fk_player_verein1`
-    FOREIGN KEY (`verein_verein_id`)
+    FOREIGN KEY (`p_verein_id`)
     REFERENCES `liga`.`verein` (`verein_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -137,7 +138,6 @@ CREATE TABLE IF NOT EXISTS `liga`.`goal` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
