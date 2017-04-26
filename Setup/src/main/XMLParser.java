@@ -1,3 +1,4 @@
+package main;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class XMLParser
 
 	public List<Match> parseMatches(InputStream matchStream) throws SAXException, IOException
 	{
+		int c = 0;
 		document = documentBuilder.parse(matchStream);
 
 		List<Match> matches = new ArrayList<>();
@@ -104,6 +106,7 @@ public class XMLParser
 				}
 			}
 			matches.add(match);
+			c++;
 			NodeList goalsList = element.getElementsByTagName("Goal");
 			for (int i = 0; i < goalsList.getLength(); i++)
 			{
@@ -111,6 +114,7 @@ public class XMLParser
 
 			}
 		}
+		System.out.println(c);
 		return matches;
 	}
 
@@ -137,7 +141,7 @@ public class XMLParser
 			}
 
 		}
-
+	
 		return playerList;
 	}
 
