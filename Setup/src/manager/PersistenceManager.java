@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+import entitys.Match;
 import entitys.Player;
 import entitys.Stadion;
 import entitys.Team;
@@ -59,4 +60,37 @@ public class PersistenceManager
 		}
 
 	}
+
+	public static void persistMatches(List<Match> matches) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException
+	{
+		try (Connection connection = ConnectionManager.getConnection())
+		{
+			for (Match match : matches)
+			{
+				PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO liga.match (match_id,m_saison,m_stadion,m_stadionID,m_endergebnis,m_halbzeitergebnis,m_punkteHeim,m_punkteGast,m_heimID,m_gastID) VALUES (?,?,?,?,?,?,?,?,?,?);");
+				preparedStatement.setInt(1, match.getMatchID());
+				preparedStatement.setInt(2, match.getSaison());
+				preparedStatement.setString(3, match.getStadion());
+				preparedStatement.setInt(4, match.getStadionID());
+				preparedStatement.setString(5, match.getEndergebnis());
+				preparedStatement.setString(6, match.getHalbzeitergebnis());
+				preparedStatement.setInt(7, match.getPunkteHeim());
+				preparedStatement.setInt(8, match.getPunkteGast());
+				preparedStatement.setInt(9, match.getHeimID());
+				preparedStatement.setInt(10, match.getGastID());
+				preparedStatement.execute();
+			}
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

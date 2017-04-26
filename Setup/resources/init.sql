@@ -72,13 +72,18 @@ CREATE TABLE IF NOT EXISTS `liga`.`match` (
   `m_halbzeitergebnis` VARCHAR(45) NULL,
   `m_punkteHeim` INT NULL,
   `m_punkteGast` INT NULL,
-  `m_heimID` INT NULL,
-  `m_gastID` INT NULL,
-  `verein_verein_id` INT(11) NOT NULL,
+  `m_heimID` INT(11) NOT NULL,
+  `m_gastID` INT(11) NOT NULL,
   PRIMARY KEY (`match_id`),
-  INDEX `fk_match_verein_idx` (`verein_verein_id` ASC),
-  CONSTRAINT `fk_match_verein`
-    FOREIGN KEY (`verein_verein_id`)
+  INDEX `fk_match_verein1_idx` (`m_heimID` ASC),
+  INDEX `fk_match_verein2_idx` (`m_gastID` ASC),
+  CONSTRAINT `fk_match_verein1`
+    FOREIGN KEY (`m_heimID`)
+    REFERENCES `liga`.`verein` (`verein_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_match_verein2`
+    FOREIGN KEY (`m_gastID`)
     REFERENCES `liga`.`verein` (`verein_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
