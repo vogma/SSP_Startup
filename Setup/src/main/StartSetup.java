@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -20,6 +21,11 @@ import entitys.Stadion;
 import entitys.Team;
 import manager.ConnectionManager;
 import manager.PersistenceManager;
+import manager.ScriptRunner;
+import xmlparser.MatchParser;
+import xmlparser.PlayerParser;
+import xmlparser.StadionParser;
+import xmlparser.TeamParser;
 
 public class StartSetup {
 
@@ -33,9 +39,15 @@ public class StartSetup {
 	private static List<Player> player;
 	private static List<Stadion> stadion;
 
+	private static MatchParser matchParser;
+	private static PlayerParser playerParser;
+	private static TeamParser teamParser;
+	private static StadionParser stadionParser;
+
 	public static void main(String[] args) {
 		try {
-			initStreams();
+			initializeStreams();
+			initializeParser();
 			parseXML();
 			runDatabaseSetupScript();
 			persistData();
@@ -44,11 +56,18 @@ public class StartSetup {
 		}
 	}
 
-	private static void initStreams() {
+	private static void initializeStreams() {
 		matchStream = StartSetup.class.getResourceAsStream("/matches.xml");
 		teamStream = StartSetup.class.getResourceAsStream("/teams.xml");
 		playerStream = StartSetup.class.getResourceAsStream("/teams.xml");
 		stadionStream = StartSetup.class.getResourceAsStream("/stadions.xml");
+	}
+
+	private static void initializeParser() {
+		matchParser = new MatchParser();
+		playerParser = new PlayerParser();
+		teamParser = new TeamParser();
+		stadionParser = new StadionParser();
 	}
 
 	private static void persistData()
@@ -60,11 +79,11 @@ public class StartSetup {
 	}
 
 	private static void parseXML() throws SAXException, IOException, ParserConfigurationException {
-		XMLParser xmlParser = new XMLParser();
-		matches = xmlParser.parseMatches(matchStream);
-		teams = xmlParser.parseTeams(teamStream);
-		player = xmlParser.parsePlayer(playerStream);
-		stadion = xmlParser.parseStadions(stadionStream);
+
+		matches = matchParser.parseXML(matchStream);
+		teams = teamParser.parseXML(teamStream);
+		player = playerParser.parseXML(playerStream);
+		stadion = stadionParser.parseXML(stadionStream);
 
 		teams = linkTeamsWithStadion(teams, stadion);
 		matches = linkMatchesWithTables(matches, teams, stadion);

@@ -1,4 +1,4 @@
-package main;
+package manager;
 /**
  *    Copyright 2009-2016 the original author or authors.
  *
@@ -94,6 +94,7 @@ public class ScriptRunner {
   }
 
   private void executeFullScript(Reader reader) throws SQLException {
+	  System.out.println("Full Script");
     StringBuffer script = new StringBuffer();
     try {
       BufferedReader lineReader = new BufferedReader(reader);
@@ -112,6 +113,7 @@ public class ScriptRunner {
   }
 
   private void executeLineByLine(Reader reader) throws SQLException {
+	  System.out.println("Line by Line Script");
     StringBuffer command = new StringBuffer();
     try {
       BufferedReader lineReader = new BufferedReader(reader);
